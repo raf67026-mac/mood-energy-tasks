@@ -15,6 +15,12 @@ export class EditProfile implements OnInit {
   name = '';
   username = '';
   email = '';
+  newPassword = '';
+  confirmPassword = '';
+
+  // Password visibility (same UX as login page)
+  showNewPass = false;
+  showConfirmPass = false;
 
   loading = false;
   error = '';
@@ -49,7 +55,15 @@ export class EditProfile implements OnInit {
     });
   }
 
-  save(): void {
+    toggleNewPass(): void {
+    this.showNewPass = !this.showNewPass;
+  }
+
+  toggleConfirmPass(): void {
+    this.showConfirmPass = !this.showConfirmPass;
+  }
+
+save(): void {
     this.error = '';
     this.success = '';
 
@@ -62,11 +76,31 @@ export class EditProfile implements OnInit {
       return;
     }
 
-    const payload = {
+    // Optional: change password
+    const pw = this.newPassword.trim();
+    const pw2 = this.confirmPassword.trim();
+    if (pw || pw2) {
+      if (!pw || !pw2) {
+        this.error = 'Please fill both password fields.';
+        return;
+      }
+      if (pw.length < 6) {
+        this.error = 'Password must be at least 6 characters.';
+        return;
+      }
+      if (pw !== pw2) {
+        this.error = 'Passwords do not match.';
+        return;
+      }
+    }
+
+    const payload: any = {
       name: this.name.trim(),
       username: this.username.trim(),
       email: this.email.trim(),
     };
+
+    if (pw) payload.password = pw;
 
     this.loading = true;
 
@@ -76,6 +110,9 @@ export class EditProfile implements OnInit {
           this.loading = false;
           this.success = 'Saved ✨';
           this.initial = { ...payload };
+          
+          this.newPassword = '';
+          this.confirmPassword = '';
           this.cdr.detectChanges();
         }, 0);
       },
@@ -96,5 +133,7 @@ export class EditProfile implements OnInit {
     this.email = this.initial.email;
     this.error = '';
     this.success = '';
+    this.newPassword = '';
+    this.confirmPassword = '';
   }
 }

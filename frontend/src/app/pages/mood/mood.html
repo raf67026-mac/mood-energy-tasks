@@ -21,21 +21,19 @@
       </div>
 
       <div class="grid mood-grid">
-        <button type="button" class="tile" [class.active]="selectedMood==='happy'" (click)="selectMood('happy')">
+        <button type="button" class="tile" [class.active]="selectedMood==='HAPPY'" (click)="selectMood('HAPPY')">
           <span class="emoji">😊</span><span class="name">Happy</span>
         </button>
 
-        <button type="button" class="tile" [class.active]="selectedMood==='normal'" (click)="selectMood('normal')">
+        <button type="button" class="tile" [class.active]="selectedMood==='NEUTRAL'" (click)="selectMood('NEUTRAL')">
           <span class="emoji">😌</span><span class="name">Normal</span>
         </button>
 
-        <button type="button" class="tile" [class.active]="selectedMood==='tired'" (click)="selectMood('tired')">
+        <button type="button" class="tile" [class.active]="selectedMood==='TIRED'" (click)="selectMood('TIRED')">
           <span class="emoji">🥱</span><span class="name">Tired</span>
         </button>
 
-        <button type="button" class="tile" [class.active]="selectedMood==='sad'" (click)="selectMood('sad')">
-          <span class="emoji">😔</span><span class="name">Sad</span>
-        </button>
+        
       </div>
     </div>
 

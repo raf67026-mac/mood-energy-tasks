@@ -18,7 +18,7 @@
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(255,255,255,0.30);
+  background: rgba(254, 254, 254, 0.351);
   backdrop-filter: blur(2px);
 }
 
@@ -142,3 +142,33 @@
   color: #0b6b3a;
   font-weight: 750;
 }
+
+
+.ep-pass{
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.ep-pass .ep-input{
+  width: 100% !important;
+  box-sizing: border-box;
+}
+.eye{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.eye:active{ transform: translateY(-50%) scale(0.98); }
